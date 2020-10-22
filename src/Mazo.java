@@ -38,12 +38,16 @@ public class Mazo {
 	public void addCarta(Carta nuevaCarta){
 		if(cartasMazo.size() == 0){ //el mazo está vacío
 			this.cartasMazo.add(nuevaCarta);
-			this.setMoldeCarta(nuevaCarta);	//metodo o atributo?
+			this.setMoldeCarta(nuevaCarta);	//-----------metodo o atributo?
 		}
-		else if (perteneceMazo(nuevaCarta) && !contieneCarta(nuevaCarta)){ //-Es necesario verificar si ya la contiene?
+		else if (perteneceMazo(nuevaCarta) && !contieneCarta(nuevaCarta)){ //-----Es necesario verificar si ya la contiene?
 			//primero compara por atributo y después por nombre, queda implícito que no agrega idénticas.
 			this.cartasMazo.add(nuevaCarta);
 		}
+	}
+	//quitar carta del mazo
+	public void quitarCarta(Carta carta){
+		cartasMazo.remove(carta);
 	}
 	
 	//molde carta es la primer carta que todas deben cumplir con su patron
@@ -59,6 +63,14 @@ public class Mazo {
 	//si ya está incluida en el maso si hay una carta con el mismo nombre
 	public boolean contieneCarta(Carta cartaBuscada){
 		return cartasMazo.contains(cartaBuscada);
+	}
+	// Saber si es impar en cantidad de cartas
+	public boolean isImpar(){//------REVISAR
+		return cartasMazo.size() % 2 != 0;
+	}
+	//Agarrar primera carta
+	public Carta getPrimeraCarta(){
+		return cartasMazo.get(0);
 	}
 	
 	//Mezclar las cartas
@@ -103,6 +115,11 @@ public class Mazo {
 	@Override
 	public String toString() {
 		return "Mazo" + this.getCartas();
+	}
+	//Devuelve la cantidad total de cartas del mazo
+	public int getTamañoMazo() {
+		// TODO Auto-generated method stub
+		return cartasMazo.size();
 	}
 	
 }

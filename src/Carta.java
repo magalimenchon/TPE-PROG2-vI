@@ -8,7 +8,7 @@ public class Carta {
 	
 	//CONSTRUCTOR
 	public Carta(String nombre) {
-		this.nombre = nombre;	//------------------CONSULTAR SI NOMBRE GENÉRICO O PERSONAJE
+		this.nombre = nombre;
 		this.atributos = new ArrayList<Atributo>();
 	}
 	
@@ -55,7 +55,7 @@ public class Carta {
 	}
 	
 	//Busca un atributo por nombre en el conjunto de atributos
-	public Atributo getAtributoPorNombre(String nombreBuscado) {
+	public Atributo getAtributoPorNombre(String nombreBuscado) {//---ver si es necesario
 		
 		for (int i = 0; i < atributos.size(); i++) {
 			Atributo atributoActual = atributos.get(i);
