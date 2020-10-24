@@ -1,55 +1,64 @@
 public class Jugador {
-	//ATRIBUTOS
+	
+	
+	//ESTADO
+	
 	private String nombre;
 	private Mazo cartas;
 	
+	
 	//CONSTRUCTOR
+	
 	public Jugador(String nombre) {
 		this.nombre = nombre;
 		this.cartas = new Mazo();
 	}
 	
+	
 	//GETTERS & SETTERS
+	
 	public String getNombre() {
 		return nombre;
 	}
 	
 	
-	//FUNCIONALIDADES
-	//pone la carta al final del mazo
+	//COMPORTAMIENTO
+	
+	//Coloca la carta al final del mazo.
 	public void moverAlFinalDelMazo(Carta carta){
 		cartas.quitarCarta(carta);
-			cartas.addCarta(carta);
+		cartas.addCarta(carta);
 	}
 	
-	//Agregar una carta a su mazo
+	//Agrega una carta a su mazo.
 	public void addCarta(Carta nuevaCarta){
 		cartas.addCarta(nuevaCarta);
 	}
 	
-	//Quita la carta del mazo
+	//Quita la carta del mazo.
 	public void quitarCarta(Carta carta){
 			cartas.quitarCarta(carta);	//-----Son iguales?
 	}
 	
-	//Retorna cantidad de cartas del jugador
+	//Retorna cantidad de cartas del jugador.
 	public int getTotalCartas(){	//-----Son iguales?
 		return cartas.getTamañoMazo();
 	}
-	//Elije atributo aleatorio
+	
+	//Retorna el nombre de un atributo aleatorio.
 	public String elegirAtributo(Carta carta){//----ver
 		return carta.getAtributoAletorio();
 	}
-	//Tomar primera carta
+	//Retorna la primera carta.
 	public Carta tomarCarta(){
 		return cartas.getPrimeraCarta();
 	}
 	
+	//OVERRIDES
 	
-	//OVERRIDES	
-	@Override
+	@Override	//Redefine el llamado al objeto.
 	public String toString() {
-		return nombre;
+		return getNombre();
 	}
 
 

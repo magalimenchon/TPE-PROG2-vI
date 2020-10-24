@@ -12,15 +12,23 @@ import javax.json.JsonReader;
 
 
 public class Mazo {
-	//ATRIBUTOS
+	
+	
+	//ESTADO
+	
 	private ArrayList<Carta> cartasMazo;
 	private Carta moldeCarta;
-
+	
+	
+	//CONSTRUCTOR
+	
 	public Mazo() {
 		cartasMazo = new ArrayList<Carta>();
 	}
 	
+	
 	//GETTERS & SETTERS
+	
 	public ArrayList<Carta> getCartas() {
 		return new ArrayList<>(this.cartasMazo);
 	}
@@ -29,55 +37,61 @@ public class Mazo {
 		return moldeCarta;
 	}
 
-	private void setMoldeCarta(Carta moldeCarta) {	//el molde carta siempre es 0 y es unico
+	private void setMoldeCarta(Carta moldeCarta) {	//El molde carta siempre es 0 y es único.
 		this.moldeCarta = moldeCarta;
 	}
 
-	//FUNCIONALIDADES
-	//agrega una carta al mazo
+	
+	//COMPORTAMIENTO
+	
+	//Agrega una carta al mazo
 	public void addCarta(Carta nuevaCarta){
 		if(cartasMazo.size() == 0){ //el mazo está vacío
 			this.cartasMazo.add(nuevaCarta);
 			this.setMoldeCarta(nuevaCarta);	//-----------metodo o atributo?
 		}
 		else if (perteneceMazo(nuevaCarta) && !contieneCarta(nuevaCarta)){ //-----Es necesario verificar si ya la contiene?
-			//primero compara por atributo y después por nombre, queda implícito que no agrega idénticas.
+			//Primero compara por atributo y después por nombre, queda implícito que no agrega idénticas.
 			this.cartasMazo.add(nuevaCarta);
 		}
 	}
-	//quitar carta del mazo
+	//Quita carta del mazo
 	public void quitarCarta(Carta carta){
 		cartasMazo.remove(carta);
 	}
 	
-	//molde carta es la primer carta que todas deben cumplir con su patron
+	//------VERRR molde carta es la primer carta que todas deben cumplir con su patron
 	//misma cantidad de atributos y tipo de atributos
 	/*private Carta moldeCarta(Carta carta){
 		return carta;
 	}*/
-	//pertenece al Mazo si las cartas son iguales
+	
+	//Pertenece al Mazo si las cartas son iguales
 	public boolean perteneceMazo(Carta cartaAComparar){
 		return moldeCarta.cartasIguales(cartaAComparar);
 	}
 	
-	//si ya está incluida en el maso si hay una carta con el mismo nombre
+	//Verifica si hay una carta con el mismo nombre en el mazo.
 	public boolean contieneCarta(Carta cartaBuscada){
 		return cartasMazo.contains(cartaBuscada);
 	}
-	// Saber si es impar en cantidad de cartas
-	public boolean isImpar(){//------REVISAR
-		return cartasMazo.size() % 2 != 0;
-	}
-	//Agarrar primera carta
-	public Carta getPrimeraCarta(){
+
+	//Dá la primera carta del mazo (como la da, la quita)
+	/*public Carta getPrimeraCarta(){
 		return cartasMazo.get(0);
+	}*/
+	public Carta getPrimeraCarta(){
+		Carta primeraCarta = cartasMazo.get(0);
+		cartasMazo.remove(0);
+		return primeraCarta;
 	}
 	
-	//Mezclar las cartas
+	//Mezcla las cartas
 	public void mezclarCartas() {
 		Collections.shuffle(cartasMazo);
 	}
-	//Importar Mazo
+	
+	//Importa Mazo
 	public void importarMazo(String jsonFile) {
         //URL url = getClass().getResource(jsonFile);
         File jsonInputFile = new File(jsonFile);
@@ -112,14 +126,17 @@ public class Mazo {
         }
     }
 	
-	@Override
-	public String toString() {
-		return "Mazo" + this.getCartas();
-	}
 	//Devuelve la cantidad total de cartas del mazo
 	public int getTamañoMazo() {
 		// TODO Auto-generated method stub
 		return cartasMazo.size();
+	}
+	
+	//OVERRIDES
+	
+	@Override	//Redefine el llamado al objeto.
+	public String toString() {
+		return "Mazo" + this.getCartas();
 	}
 	
 }

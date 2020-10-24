@@ -1,7 +1,7 @@
 
 public class Atributo implements Comparable<Atributo>{
 
-	//ATRIBUTOS
+	//ESTADO
 	
 	private String nombre;
 	private int valorNumerico;
@@ -34,21 +34,22 @@ public class Atributo implements Comparable<Atributo>{
 		this.valorNumerico = valorNumerico;
 	}
 	
-	//FUNCIONALIDADES
-
+	
+	//COMPORTAMIENTO
 
 	//OVERRIDES
-	@Override
+	
+	@Override	//Redefine el llamado al objeto.
 	public String toString(){
-		return this.nombre + this.valorNumerico;
+		return this.getNombre() + " " + this.getValorNumerico();
 	}
 	
-	@Override	//compara los valores de un atributo con otro
+	@Override	//Compara los valores de un atributo con otro.
 	public int compareTo(Atributo otroAtributo) {
 		return this.getValorNumerico() - otroAtributo.getValorNumerico();
 	}
 	
-	@Override	//porque en carta uso contains en método contieneAtributo
+	@Override	//Defino la noción de iguales porque en Carta uso contains en método contieneAtributo.
 	public boolean equals(Object objeto) {
 		Atributo otroAtributo =(Atributo) objeto;
 		try {
